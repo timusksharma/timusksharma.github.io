@@ -1,0 +1,1595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Sumit Sharma | AI Engineer</title>
+
+    <meta
+        name="description"
+        content="Sumit Sharma - AI Engineer and Senior Data Engineer specializing in Python, PySpark, Agentic AI, LLMs, RAG, FastAPI and scalable data systems."
+    >
+
+    <style>
+        /* =========================
+           GLOBAL
+        ========================== */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Inter, Arial, Helvetica, sans-serif;
+            background: #050816;
+            color: #f5f7ff;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .container {
+            width: min(1150px, 92%);
+            margin: auto;
+        }
+
+        section {
+            padding: 100px 0;
+        }
+
+        .section-title {
+            font-size: 38px;
+            margin-bottom: 12px;
+        }
+
+        .section-subtitle {
+            color: #8e97b2;
+            max-width: 700px;
+            margin-bottom: 50px;
+        }
+
+        .gradient-text {
+            background: linear-gradient(
+                90deg,
+                #7c5cff,
+                #00d4ff,
+                #7c5cff
+            );
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        /* =========================
+           BACKGROUND
+        ========================== */
+
+        .background-glow {
+            position: fixed;
+            width: 500px;
+            height: 500px;
+            background: #654cff;
+            filter: blur(180px);
+            opacity: 0.12;
+            top: -200px;
+            right: -150px;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .background-glow-2 {
+            position: fixed;
+            width: 400px;
+            height: 400px;
+            background: #00d4ff;
+            filter: blur(180px);
+            opacity: 0.08;
+            bottom: -150px;
+            left: -150px;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        /* =========================
+           NAVBAR
+        ========================== */
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(5, 8, 22, 0.75);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+
+        .nav-inner {
+            width: min(1150px, 92%);
+            height: 72px;
+            margin: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: 800;
+            letter-spacing: -1px;
+        }
+
+        .logo span {
+            color: #7c5cff;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 28px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #9da6c2;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: white;
+        }
+
+        .nav-button {
+            padding: 9px 17px;
+            border: 1px solid #6652ff;
+            border-radius: 8px;
+            color: white !important;
+        }
+
+        /* =========================
+           HERO
+        ========================== */
+
+        #home {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 120px;
+        }
+
+        .hero {
+            display: grid;
+            grid-template-columns: 1.3fr 0.7fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .availability {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 7px 12px;
+            border: 1px solid rgba(0, 255, 180, 0.25);
+            background: rgba(0,255,180,0.05);
+            border-radius: 50px;
+            color: #74f7c5;
+            font-size: 13px;
+            margin-bottom: 25px;
+        }
+
+        .status-dot {
+            width: 7px;
+            height: 7px;
+            background: #48e6a7;
+            border-radius: 50%;
+            box-shadow: 0 0 12px #48e6a7;
+        }
+
+        .hero h1 {
+            font-size: clamp(48px, 7vw, 82px);
+            line-height: 0.98;
+            letter-spacing: -4px;
+            margin-bottom: 25px;
+        }
+
+        .hero-description {
+            font-size: 19px;
+            color: #9da6c2;
+            max-width: 680px;
+            margin-bottom: 32px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 13px 21px;
+            border-radius: 9px;
+            font-weight: 600;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+        .btn-primary {
+            background: #725cff;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 35px rgba(114,92,255,0.3);
+        }
+
+        .btn-secondary {
+            border: 1px solid #303751;
+            color: #dbe0f2;
+        }
+
+        .btn-secondary:hover {
+            border-color: #6e5cff;
+            transform: translateY(-3px);
+        }
+
+        /* =========================
+           CODE CARD
+        ========================== */
+
+        .code-card {
+            background: rgba(12,17,39,0.85);
+            border: 1px solid #252d4a;
+            border-radius: 15px;
+            padding: 22px;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.3);
+            transform: rotate(2deg);
+            transition: 0.4s;
+        }
+
+        .code-card:hover {
+            transform: rotate(0deg) translateY(-5px);
+        }
+
+        .terminal-header {
+            display: flex;
+            gap: 7px;
+            margin-bottom: 20px;
+        }
+
+        .terminal-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #39425f;
+        }
+
+        .code {
+            font-family: "Courier New", monospace;
+            color: #b8c1dc;
+            font-size: 13px;
+        }
+
+        .code .purple {
+            color: #b08cff;
+        }
+
+        .code .blue {
+            color: #5ddcff;
+        }
+
+        .code .green {
+            color: #70e7ae;
+        }
+
+        .code .yellow {
+            color: #f4d879;
+        }
+
+        /* =========================
+           STATS
+        ========================== */
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(4,1fr);
+            border-top: 1px solid #202841;
+            border-bottom: 1px solid #202841;
+            margin-top: 80px;
+        }
+
+        .stat {
+            padding: 25px;
+            text-align: center;
+            border-right: 1px solid #202841;
+        }
+
+        .stat:last-child {
+            border-right: none;
+        }
+
+        .stat h3 {
+            font-size: 30px;
+        }
+
+        .stat p {
+            color: #7e87a2;
+            font-size: 13px;
+        }
+
+        /* =========================
+           ABOUT
+        ========================== */
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 70px;
+        }
+
+        .about-text p {
+            color: #9da6c2;
+            margin-bottom: 18px;
+        }
+
+        .highlight {
+            color: white;
+            font-weight: 600;
+        }
+
+        .about-box {
+            background: #0b1025;
+            border: 1px solid #222b48;
+            border-radius: 14px;
+            padding: 30px;
+        }
+
+        .about-box h3 {
+            margin-bottom: 20px;
+        }
+
+        .about-list {
+            list-style: none;
+        }
+
+        .about-list li {
+            padding: 12px 0;
+            border-bottom: 1px solid #1e2742;
+            color: #9da6c2;
+        }
+
+        .about-list li:last-child {
+            border-bottom: none;
+        }
+
+        /* =========================
+           SKILLS
+        ========================== */
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            gap: 18px;
+        }
+
+        .skill-card {
+            background: #0b1025;
+            border: 1px solid #222b48;
+            border-radius: 13px;
+            padding: 25px;
+            transition: 0.3s;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+            border-color: #6655ff;
+        }
+
+        .skill-icon {
+            font-size: 27px;
+            margin-bottom: 14px;
+        }
+
+        .skill-card h3 {
+            margin-bottom: 8px;
+        }
+
+        .skill-card p {
+            color: #7f89a5;
+            font-size: 14px;
+        }
+
+        /* =========================
+           EXPERIENCE
+        ========================== */
+
+        .timeline {
+            position: relative;
+            margin-left: 15px;
+            border-left: 1px solid #29314d;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding: 0 0 55px 40px;
+        }
+
+        .timeline-item::before {
+            content: "";
+            position: absolute;
+            left: -5px;
+            top: 4px;
+            width: 9px;
+            height: 9px;
+            background: #725cff;
+            border-radius: 50%;
+            box-shadow: 0 0 15px rgba(114,92,255,0.8);
+        }
+
+        .timeline-date {
+            color: #7c5cff;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 7px;
+        }
+
+        .timeline-item h3 {
+            font-size: 22px;
+        }
+
+        .company {
+            color: #8992ad;
+            margin-bottom: 15px;
+        }
+
+        .timeline-item p {
+            color: #8f98b3;
+            max-width: 800px;
+        }
+
+        /* =========================
+           PROJECTS
+        ========================== */
+
+        .projects {
+            display: grid;
+            grid-template-columns: repeat(2,1fr);
+            gap: 22px;
+        }
+
+        .project-card {
+            background: linear-gradient(
+                145deg,
+                #0d132b,
+                #090d20
+            );
+            border: 1px solid #252e4d;
+            border-radius: 15px;
+            padding: 30px;
+            transition: 0.35s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card::before {
+            content: "";
+            position: absolute;
+            width: 180px;
+            height: 180px;
+            background: #725cff;
+            filter: blur(100px);
+            opacity: 0.08;
+            right: -100px;
+            top: -100px;
+        }
+
+        .project-card:hover {
+            transform: translateY(-7px);
+            border-color: #6755ff;
+        }
+
+        .project-number {
+            font-size: 12px;
+            color: #7c5cff;
+            margin-bottom: 20px;
+        }
+
+        .project-card h3 {
+            font-size: 23px;
+            margin-bottom: 12px;
+        }
+
+        .project-card p {
+            color: #8e97b2;
+            font-size: 14px;
+            margin-bottom: 22px;
+        }
+
+        .tags {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            background: #151b35;
+            border: 1px solid #293250;
+            color: #aeb7d1;
+            padding: 5px 9px;
+            border-radius: 6px;
+            font-size: 11px;
+        }
+
+        /* =========================
+           ARCHITECTURE
+        ========================== */
+
+        .architecture {
+            background: #080c1d;
+            border: 1px solid #202943;
+            border-radius: 15px;
+            padding: 40px;
+            overflow-x: auto;
+        }
+
+        .architecture-flow {
+            min-width: 700px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .architecture-box {
+            padding: 20px;
+            min-width: 130px;
+            text-align: center;
+            background: #111832;
+            border: 1px solid #303b60;
+            border-radius: 10px;
+        }
+
+        .architecture-box strong {
+            display: block;
+            font-size: 13px;
+        }
+
+        .architecture-box span {
+            font-size: 11px;
+            color: #7e88a6;
+        }
+
+        .arrow {
+            color: #6c5aff;
+            font-size: 22px;
+        }
+
+        /* =========================
+           EDUCATION
+        ========================== */
+
+        .education-card {
+            background: #0b1025;
+            border: 1px solid #252e4b;
+            padding: 30px;
+            border-radius: 14px;
+            max-width: 700px;
+        }
+
+        .education-card h3 {
+            font-size: 22px;
+        }
+
+        .education-card p {
+            color: #8d96b1;
+        }
+
+        /* =========================
+           CONTACT
+        ========================== */
+
+        .contact {
+            text-align: center;
+            max-width: 800px;
+            margin: auto;
+        }
+
+        .contact h2 {
+            font-size: clamp(40px, 6vw, 65px);
+            letter-spacing: -2px;
+            margin-bottom: 20px;
+        }
+
+        .contact p {
+            color: #8e97b2;
+            margin-bottom: 30px;
+        }
+
+        .socials {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .social {
+            padding: 10px 18px;
+            border: 1px solid #29314c;
+            border-radius: 8px;
+            color: #a9b1c9;
+            font-size: 13px;
+            transition: 0.3s;
+        }
+
+        .social:hover {
+            color: white;
+            border-color: #6d5cff;
+            transform: translateY(-3px);
+        }
+
+        /* =========================
+           FOOTER
+        ========================== */
+
+        footer {
+            border-top: 1px solid #202841;
+            padding: 25px 0;
+            color: #656e89;
+            font-size: 13px;
+            text-align: center;
+        }
+
+        /* =========================
+           RESPONSIVE
+        ========================== */
+
+        @media (max-width: 850px) {
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero {
+                grid-template-columns: 1fr;
+            }
+
+            .code-card {
+                transform: none;
+            }
+
+            .stats {
+                grid-template-columns: repeat(2,1fr);
+            }
+
+            .stat:nth-child(2) {
+                border-right: none;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .projects {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 550px) {
+
+            section {
+                padding: 70px 0;
+            }
+
+            .hero h1 {
+                letter-spacing: -2px;
+            }
+
+            .hero-description {
+                font-size: 16px;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .architecture {
+                padding: 20px;
+            }
+        }
+
+        /* =========================
+           ANIMATION
+        ========================== */
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(25px);
+            animation: fadeIn 0.8s forwards;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div class="background-glow"></div>
+<div class="background-glow-2"></div>
+
+
+<!-- =========================
+     NAVIGATION
+========================== -->
+
+<nav>
+    <div class="nav-inner">
+
+        <a href="#home" class="logo">
+            Sumit<span>.</span>
+        </a>
+
+        <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact" class="nav-button">Contact</a></li>
+        </ul>
+
+    </div>
+</nav>
+
+
+<!-- =========================
+     HERO
+========================== -->
+
+<section id="home">
+
+    <div class="container">
+
+        <div class="hero">
+
+            <div class="fade-in">
+
+                <div class="availability">
+                    <span class="status-dot"></span>
+                    Building Production AI Systems
+                </div>
+
+                <h1>
+                    Senior Data Engineer
+                    <br>
+                    <span class="gradient-text">
+                        → AI Engineer
+                    </span>
+                </h1>
+
+                <p class="hero-description">
+                    I build scalable data and AI systems using Python,
+                    PySpark, LLMs, RAG, Agentic AI, FastAPI and cloud-native
+                    technologies.
+                </p>
+
+                <div class="hero-buttons">
+
+                    <a href="#projects" class="btn btn-primary">
+                        View My Work →
+                    </a>
+
+                    <a href="#contact" class="btn btn-secondary">
+                        Let's Connect
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <div class="code-card">
+
+                <div class="terminal-header">
+                    <span class="terminal-dot"></span>
+                    <span class="terminal-dot"></span>
+                    <span class="terminal-dot"></span>
+                </div>
+
+                <div class="code">
+
+                    <p>
+                        <span class="purple">class</span>
+                        <span class="blue">AIEngineer</span>:
+                    </p>
+
+                    <br>
+
+                    <p>
+                        &nbsp;&nbsp;<span class="purple">name</span> =
+                        <span class="green">"Sumit Sharma"</span>
+                    </p>
+
+                    <p>
+                        &nbsp;&nbsp;<span class="purple">experience</span> =
+                        <span class="yellow">5+</span>
+                    </p>
+
+                    <p>
+                        &nbsp;&nbsp;<span class="purple">domain</span> =
+                        <span class="green">"AI + Data"</span>
+                    </p>
+
+                    <br>
+
+                    <p>
+                        &nbsp;&nbsp;<span class="purple">stack</span> = [
+                    </p>
+
+                    <p>
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <span class="green">"Python"</span>,
+                    </p>
+
+                    <p>
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <span class="green">"PySpark"</span>,
+                    </p>
+
+                    <p>
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <span class="green">"LangGraph"</span>,
+                    </p>
+
+                    <p>
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <span class="green">"LLMs"</span>,
+                    </p>
+
+                    <p>
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <span class="green">"FastAPI"</span>
+                    </p>
+
+                    <p>&nbsp;&nbsp;]</p>
+
+                    <br>
+
+                    <p>
+                        <span class="purple">return</span>
+                        <span class="green">"Build. Scale. Automate."</span>
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- STATS -->
+
+        <div class="stats">
+
+            <div class="stat">
+                <h3>5+</h3>
+                <p>Years Experience</p>
+            </div>
+
+            <div class="stat">
+                <h3>3+</h3>
+                <p>Years Airbus Program</p>
+            </div>
+
+            <div class="stat">
+                <h3>10+</h3>
+                <p>Core Technologies</p>
+            </div>
+
+            <div class="stat">
+                <h3>AI</h3>
+                <p>Current Focus</p>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     ABOUT
+========================== -->
+
+<section id="about">
+
+    <div class="container">
+
+        <h2 class="section-title">
+            About <span class="gradient-text">Me</span>
+        </h2>
+
+        <p class="section-subtitle">
+            Data engineering experience meets modern AI engineering.
+        </p>
+
+
+        <div class="about-grid">
+
+            <div class="about-text">
+
+                <p>
+                    I'm <span class="highlight">Sumit Sharma</span>,
+                    a Senior Data Engineer with 5+ years of experience
+                    building data-intensive applications and scalable
+                    data pipelines.
+                </p>
+
+                <p>
+                    I've worked extensively with
+                    <span class="highlight">
+                        Python, PySpark, SQL, ETL pipelines and Big Data
+                    </span>,
+                    including projects supporting the Airbus ecosystem.
+                </p>
+
+                <p>
+                    My current focus is moving deeper into
+                    <span class="highlight">
+                        Applied AI, LLMs and Agentic AI
+                    </span>,
+                    building production-ready systems rather than
+                    simple AI demos.
+                </p>
+
+                <p>
+                    I enjoy solving problems where data engineering,
+                    distributed systems and AI intersect.
+                </p>
+
+            </div>
+
+
+            <div class="about-box">
+
+                <h3>What I Build</h3>
+
+                <ul class="about-list">
+
+                    <li>→ AI-powered data pipelines</li>
+                    <li>→ LLM & Agentic AI applications</li>
+                    <li>→ RAG systems</li>
+                    <li>→ Data quality & monitoring systems</li>
+                    <li>→ FastAPI AI services</li>
+                    <li>→ Production ETL / Big Data systems</li>
+                    <li>→ Cloud-native AI applications</li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     SKILLS
+========================== -->
+
+<section id="skills">
+
+    <div class="container">
+
+        <h2 class="section-title">
+            Technical <span class="gradient-text">Stack</span>
+        </h2>
+
+        <p class="section-subtitle">
+            Technologies I use to design, build and deploy scalable
+            data and AI systems.
+        </p>
+
+
+        <div class="skills-grid">
+
+            <div class="skill-card">
+                <div class="skill-icon">🐍</div>
+                <h3>Python</h3>
+                <p>
+                    Production Python, automation, APIs,
+                    data processing and AI applications.
+                </p>
+            </div>
+
+
+            <div class="skill-card">
+                <div class="skill-icon">⚡</div>
+                <h3>Big Data</h3>
+                <p>
+                    PySpark, distributed processing,
+                    ETL pipelines and data transformation.
+                </p>
+            </div>
+
+
+            <div class="skill-card">
+                <div class="skill-icon">🧠</div>
+                <h3>LLMs</h3>
+                <p>
+                    LLM applications, prompting, tool calling,
+                    streaming and multi-model architectures.
+                </p>
+            </div>
+
+
+            <div class="skill-card">
+                <div class="skill-icon">🤖</div>
+                <h3>Agentic AI</h3>
+                <p>
+                    LangGraph, LangChain, orchestration,
+                    agents, tools and workflow automation.
+                </p>
+            </div>
+
+
+            <div class="skill-card">
+                <div class="skill-icon">🔎</div>
+                <h3>RAG</h3>
+                <p>
+                    Retrieval pipelines, embeddings,
+                    vector databases and knowledge systems.
+                </p>
+            </div>
+
+
+            <div class="skill-card">
+                <div class="skill-icon">🚀</div>
+                <h3>APIs & Backend</h3>
+                <p>
+                    FastAPI, REST APIs, service architecture
+                    and AI inference endpoints.
+                </p>
+            </div>
+
+
+            <div class="skill-card">
+                <div class="skill-icon">🗄️</div>
+                <h3>Data</h3>
+                <p>
+                    SQL, PostgreSQL, Pandas, Polars,
+                    schema validation and data quality.
+                </p>
+            </div>
+
+
+            <div class="skill-card">
+                <div class="skill-icon">🐳</div>
+                <h3>DevOps</h3>
+                <p>
+                    Docker, Kubernetes, CI/CD and
+                    production deployment patterns.
+                </p>
+            </div>
+
+
+            <div class="skill-card">
+                <div class="skill-icon">☁️</div>
+                <h3>Cloud & MLOps</h3>
+                <p>
+                    Model serving, monitoring, optimization
+                    and scalable AI infrastructure.
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     EXPERIENCE
+========================== -->
+
+<section id="experience">
+
+    <div class="container">
+
+        <h2 class="section-title">
+            Work <span class="gradient-text">Experience</span>
+        </h2>
+
+        <p class="section-subtitle">
+            Experience building production-grade data platforms
+            and automation systems.
+        </p>
+
+
+        <div class="timeline">
+
+            <div class="timeline-item">
+
+                <div class="timeline-date">
+                    2022 — Present
+                </div>
+
+                <h3>Senior Data Engineer</h3>
+
+                <div class="company">
+                    Alten India · Airbus Program
+                </div>
+
+                <p>
+                    Designed and maintained scalable data products
+                    and ETL pipelines using Python, PySpark, SQL
+                    and Palantir Foundry / Skywise technologies.
+                    Worked across the complete data lifecycle,
+                    including ingestion, transformation,
+                    validation, monitoring and troubleshooting.
+                </p>
+
+            </div>
+
+
+            <div class="timeline-item">
+
+                <div class="timeline-date">
+                    Previous Experience
+                </div>
+
+                <h3>Software / Data Engineering</h3>
+
+                <div class="company">
+                    Software Engineering
+                </div>
+
+                <p>
+                    Built backend and web applications using
+                    Java, Spring Boot, Node.js, JavaScript and React,
+                    providing a strong foundation in software
+                    engineering and API development.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     PROJECTS
+========================== -->
+
+<section id="projects">
+
+    <div class="container">
+
+        <h2 class="section-title">
+            Featured <span class="gradient-text">Projects</span>
+        </h2>
+
+        <p class="section-subtitle">
+            Projects focused on automation, AI engineering,
+            data platforms and production systems.
+        </p>
+
+
+        <div class="projects">
+
+
+            <!-- PROJECT 1 -->
+
+            <div class="project-card">
+
+                <div class="project-number">
+                    PROJECT 01
+                </div>
+
+                <h3>
+                    AI Data Pipeline Generator
+                </h3>
+
+                <p>
+                    An AI-powered agent that converts natural-language
+                    data requirements into production-ready ETL
+                    pipeline structures, including SQL generation,
+                    PySpark transformations, schema validation,
+                    logging and data-quality checks.
+                </p>
+
+                <div class="tags">
+                    <span class="tag">Python</span>
+                    <span class="tag">FastAPI</span>
+                    <span class="tag">LangGraph</span>
+                    <span class="tag">OpenAI</span>
+                    <span class="tag">PySpark</span>
+                    <span class="tag">SQL</span>
+                    <span class="tag">Docker</span>
+                </div>
+
+            </div>
+
+
+            <!-- PROJECT 2 -->
+
+            <div class="project-card">
+
+                <div class="project-number">
+                    PROJECT 02
+                </div>
+
+                <h3>
+                    Airbus Dataset Automation
+                </h3>
+
+                <p>
+                    Automation system designed around Airbus Skywise
+                    component and dataset information. Processes
+                    documentation and dataset metadata to help users
+                    discover component information, serial numbers,
+                    quantities and related data.
+                </p>
+
+                <div class="tags">
+                    <span class="tag">Python</span>
+                    <span class="tag">PySpark</span>
+                    <span class="tag">Skywise</span>
+                    <span class="tag">Automation</span>
+                    <span class="tag">ETL</span>
+                </div>
+
+            </div>
+
+
+            <!-- PROJECT 3 -->
+
+            <div class="project-card">
+
+                <div class="project-number">
+                    PROJECT 03
+                </div>
+
+                <h3>
+                    Dataset Health Monitoring
+                </h3>
+
+                <p>
+                    Automated health-monitoring framework for detecting
+                    data platform issues such as primary-key violations,
+                    stale datasets, build failures, schema inconsistencies
+                    and dataset consistency problems.
+                </p>
+
+                <div class="tags">
+                    <span class="tag">Python</span>
+                    <span class="tag">PySpark</span>
+                    <span class="tag">Data Quality</span>
+                    <span class="tag">Monitoring</span>
+                    <span class="tag">Automation</span>
+                </div>
+
+            </div>
+
+
+            <!-- PROJECT 4 -->
+
+            <div class="project-card">
+
+                <div class="project-number">
+                    PROJECT 04
+                </div>
+
+                <h3>
+                    Agentic RAG Platform
+                </h3>
+
+                <p>
+                    Production-oriented RAG architecture combining
+                    document ingestion, embeddings, vector search,
+                    retrieval agents, LLM reasoning and tool calling
+                    to answer questions from enterprise knowledge.
+                </p>
+
+                <div class="tags">
+                    <span class="tag">LangGraph</span>
+                    <span class="tag">RAG</span>
+                    <span class="tag">LLM</span>
+                    <span class="tag">Qdrant</span>
+                    <span class="tag">FastAPI</span>
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     AI ARCHITECTURE
+========================== -->
+
+<section>
+
+    <div class="container">
+
+        <h2 class="section-title">
+            How I Think About <span class="gradient-text">AI Systems</span>
+        </h2>
+
+        <p class="section-subtitle">
+            From user intent to production-ready execution.
+        </p>
+
+
+        <div class="architecture">
+
+            <div class="architecture-flow">
+
+                <div class="architecture-box">
+                    <strong>User</strong>
+                    <span>Natural Language</span>
+                </div>
+
+                <div class="arrow">→</div>
+
+                <div class="architecture-box">
+                    <strong>Agent</strong>
+                    <span>LangGraph</span>
+                </div>
+
+                <div class="arrow">→</div>
+
+                <div class="architecture-box">
+                    <strong>Tools</strong>
+                    <span>APIs / SQL</span>
+                </div>
+
+                <div class="arrow">→</div>
+
+                <div class="architecture-box">
+                    <strong>Data</strong>
+                    <span>RAG / DB</span>
+                </div>
+
+                <div class="arrow">→</div>
+
+                <div class="architecture-box">
+                    <strong>LLM</strong>
+                    <span>Reasoning</span>
+                </div>
+
+                <div class="arrow">→</div>
+
+                <div class="architecture-box">
+                    <strong>Response</strong>
+                    <span>Validated</span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     EDUCATION
+========================== -->
+
+<section>
+
+    <div class="container">
+
+        <h2 class="section-title">
+            Education
+        </h2>
+
+        <p class="section-subtitle">
+            Computer Science foundation powering my engineering journey.
+        </p>
+
+
+        <div class="education-card">
+
+            <h3>
+                Bachelor of Technology — Computer Science & Engineering
+            </h3>
+
+            <p>
+                Lovely Professional University
+            </p>
+
+            <p>
+                2021
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     CONTACT
+========================== -->
+
+<section id="contact">
+
+    <div class="container">
+
+        <div class="contact">
+
+            <h2>
+                Let's build something
+                <span class="gradient-text">
+                    intelligent.
+                </span>
+            </h2>
+
+            <p>
+                I'm interested in opportunities involving
+                Applied AI, Agentic AI, LLM systems,
+                Data Engineering and AI infrastructure.
+            </p>
+
+
+            <div class="socials">
+
+                <!-- Replace these links with your real profiles -->
+
+                <a
+                    href="https://www.linkedin.com/"
+                    target="_blank"
+                    class="social"
+                >
+                    LinkedIn
+                </a>
+
+                <a
+                    href="https://github.com/"
+                    target="_blank"
+                    class="social"
+                >
+                    GitHub
+                </a>
+
+                <a
+                    href="mailto:your-email@example.com"
+                    class="social"
+                >
+                    Email
+                </a>
+
+                <a
+                    href="#"
+                    class="social"
+                >
+                    Download Resume
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     FOOTER
+========================== -->
+
+<footer>
+
+    <div class="container">
+
+        © 2026 Sumit Sharma.
+        Built with HTML, CSS & a little AI.
+
+    </div>
+
+</footer>
+
+
+<script>
+
+    /* =========================
+       NAVBAR SCROLL EFFECT
+    ========================== */
+
+    window.addEventListener("scroll", function () {
+
+        const nav = document.querySelector("nav");
+
+        if (window.scrollY > 50) {
+            nav.style.background = "rgba(5,8,22,0.95)";
+        } else {
+            nav.style.background = "rgba(5,8,22,0.75)";
+        }
+
+    });
+
+
+    /* =========================
+       SIMPLE REVEAL ANIMATION
+    ========================== */
+
+    const cards = document.querySelectorAll(
+        ".skill-card, .project-card, .timeline-item, .education-card"
+    );
+
+    const observer = new IntersectionObserver(
+        entries => {
+
+            entries.forEach(entry => {
+
+                if (entry.isIntersecting) {
+
+                    entry.target.style.opacity = "1";
+                    entry.target.style.transform = "translateY(0)";
+
+                }
+
+            });
+
+        },
+        {
+            threshold: 0.1
+        }
+    );
+
+
+    cards.forEach(card => {
+
+        card.style.opacity = "0";
+        card.style.transform = "translateY(25px)";
+        card.style.transition = "all 0.6s ease";
+
+        observer.observe(card);
+
+    });
+
+
+</script>
+
+</body>
+</html>

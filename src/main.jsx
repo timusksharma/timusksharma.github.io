@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import './styles.css';
 
-const resumeUrl = '/resume/Sumit_Kumar_Sharma_Resume.docx';
+const resumeUrl = '/resume/Sumit_Kumar_Sharma_Resume.pdf';
 const profileImage = 'https://lh3.googleusercontent.com/aida-public/AB6AXuBvYFjVFFdk-VgXMST3n9wnHFwbW1FwRZWe0K-QfeHzSOT_cvW4D-vhSOcbz0V8Tk3m2dVX2QAGo3nsAplQkEvkGYxhMI2_xzDuQ8dVwtXsjPHfaO2tmTfINyABmAf2E8MZy0uHzKY7dW69EzukG_JKzzLxL9AlgaT4ZqYlZ-6Cv-aQ_sZQggno0y9MTbKMIHHDhOtUn4hlpSYNt0hiPw9g-ps158UQyGPIAVGYxUCuu867yoJf5X7Sio1E-P5LUVeAUIg';
 
 const metrics = [
@@ -55,7 +55,7 @@ function Hero() {
       <p className="intro">I build reliable LLM-powered applications, RAG pipelines, and scalable data platforms with Python, FastAPI, LangGraph, and PySpark.</p>
       <div className="button-row">
         <a className="button primary" href="#projects">Explore systems ↓</a>
-        <a className="button secondary" href={resumeUrl} download>⇩ Download resume <small>DOCX</small></a>
+        <a className="button secondary" href={resumeUrl} download>⇩ Download resume <small>PDF</small></a>
       </div>
       <div className="network"><span>Network grid:</span><a className="icon-link" href="https://github.com/timusksharma" target="_blank" rel="noreferrer" aria-label="GitHub">GH</a><a className="icon-link" href="mailto:timusksharma@gmail.com" aria-label="Email">✉</a><span>// node: Bengaluru, IN</span></div>
     </div>

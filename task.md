@@ -6,3 +6,4 @@
 4. `DONE` — Build architecture, metric, project, experience, and skills sections from resume data.
 5. `DONE` — Build static contact/footer actions and add the downloadable resume asset.
 6. `DONE` — Verify production build, responsiveness, anchor/theme behavior, and GitHub Pages asset paths.
+7. `DONE` — Replace the deployed DOCX resume with the supplied PDF and publish the update.

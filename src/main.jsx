@@ -58,7 +58,12 @@ function Hero() {
     </div><div className="hero-bento">
       <a className="identity-tile" href="#architecture"><div><h2>Sumit Sharma</h2><p>Bengaluru, India</p></div><div className="mini-flow" aria-hidden="true"><span>YOUR IDEA</span><i>↓</i><strong>Data → Agents → API</strong><i>↓</i><span>A WORKING PRODUCT</span></div><span className="expert-badge">✳ AI & DATA ENGINEERING</span><span className="tile-link">From idea to production ↗</span></a>
       <div className="portrait-tile">{!imageFailed ? <img src={profileImage} alt="Sumit Sharma" onError={() => setImageFailed(true)} /> : <div className="portrait-fallback"><span>SS</span><p>Curiosity.<br />Code. Craft.</p></div>}<div className="portrait-label"><span className="dot" /> Human behind the systems</div></div>
-      <div className="brands-tile"><p>Engineering experience<br />across ambitious teams.</p><div><strong>ALTEN</strong><strong>Salesken.ai</strong><strong>Oracle Cerner</strong></div></div>
+      <div className="brands-tile experience-tile">
+        <div className="experience-tile-heading"><span>THE TEAMS BEHIND THE JOURNEY</span><h2>Built with experience.</h2></div>
+        <div className="company-links">
+          {[['ALTEN', 'Aerospace · Airbus', '2022 — Present'], ['Salesken.ai', 'Conversation intelligence', '2021 — 2022'], ['Oracle Cerner', 'Healthcare technology', '2021']].map(([name, sector], index) => <a className="company-link" href="#experience" key={name} aria-label={`Explore my experience at ${name}`}><span className="company-monogram" aria-hidden="true">{['A', 'S', 'O'][index]}</span><span className="company-copy"><strong>{name}</strong><small>{sector}</small></span><span className="company-arrow" aria-hidden="true">↗</span></a>)}
+        </div>
+      </div>
       <div className="social-tiles"><a href="https://github.com/timusksharma" target="_blank" rel="noreferrer" aria-label="Visit GitHub">GH<span>↗</span></a><a href="mailto:timusksharma@gmail.com" aria-label="Email Sumit">@<span>↗</span></a><a href={resumeUrl} download aria-label="Download resume">CV<span>↓</span></a><a href="#projects" aria-label="Explore projects">⌘<span>↗</span></a></div>
     </div></div><div className="container hero-foot"><span>AI SYSTEMS. BUILT WITH PURPOSE.</span><a href="#about">A little about my approach ↓</a></div></section>;
 }

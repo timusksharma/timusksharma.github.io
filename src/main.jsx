@@ -33,57 +33,55 @@ const skillGroups = [
 ];
 
 function Header({ theme, onThemeToggle }) {
+  const [open, setOpen] = useState(false);
+  const [active, setActive] = useState('home');
+  useEffect(() => {
+    const observer = new IntersectionObserver(entries => entries.forEach(entry => { if (entry.isIntersecting) setActive(entry.target.id); }), { rootMargin: '-15% 0px -55% 0px' });
+    document.querySelectorAll('section[id]').forEach(section => observer.observe(section));
+    return () => observer.disconnect();
+  }, []);
   return <header className="nav"><div className="container nav-row">
-    <a className="brand" href="#home">Sumit Sharma <small>/ AI</small></a>
-    <nav className="nav-links" aria-label="Main navigation">
-      {['About', 'Projects', 'Architecture', 'Experience', 'Contact'].map((item) => <a key={item} href={`#${item.toLowerCase()}`}>{item}</a>)}
+    <a className="brand" href="#home" aria-label="Sumit Sharma home">s<span>.</span><small>SUMIT SHARMA</small></a>
+    <nav className={`nav-links ${open ? 'is-open' : ''}`} aria-label="Main navigation" id="main-menu">
+      {['About', 'Projects', 'Architecture', 'Experience', 'Contact'].map(item => <a key={item} href={`#${item.toLowerCase()}`} aria-current={active === item.toLowerCase() ? 'location' : undefined} onClick={() => setOpen(false)}>{item}</a>)}
     </nav>
-    <div className="nav-actions">
-      <button className="theme-button" onClick={onThemeToggle} aria-label="Toggle color theme">{theme === 'dark' ? '☾ Dark' : '☀ Day'}</button>
-      <a className="resume-button" href={resumeUrl} download><span>⇩</span> Resume</a>
-      <img className="avatar" src={profileImage} alt="Sumit Kumar Sharma" />
-    </div>
+    <div className="nav-actions"><button className="theme-button" onClick={onThemeToggle} aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} theme`}>{theme === 'dark' ? '☀' : '☾'}</button><a className="resume-button" href={resumeUrl} download>Resume ↗</a><button className="menu-button" aria-expanded={open} aria-controls="main-menu" onClick={() => setOpen(!open)}>{open ? 'Close' : 'Menu'}</button></div>
   </div></header>;
 }
-
 function Hero() {
-  return <section className="hero" id="home"><div className="container hero-grid">
-    <div>
-      <div className="eyebrow"><span className="dot" /> Ready for production AI and agentic systems</div>
-      <h1>Hi, I&apos;m <span className="gradient">Sumit Sharma</span></h1>
-      <p className="role">AI Engineer</p>
-      <p className="intro">I build reliable LLM-powered applications, RAG pipelines, and scalable data platforms with Python, FastAPI, LangGraph, and PySpark.</p>
-      <div className="button-row">
-        <a className="button primary" href="#projects">Explore systems ↓</a>
-        <a className="button secondary" href={resumeUrl} download>⇩ Download resume <small>PDF</small></a>
-      </div>
-      <div className="network"><span>Network grid:</span><a className="icon-link" href="https://github.com/timusksharma" target="_blank" rel="noreferrer" aria-label="GitHub">GH</a><a className="icon-link" href="mailto:timusksharma@gmail.com" aria-label="Email">✉</a><span>// node: Bengaluru, IN</span></div>
-    </div>
-    <div className="portrait-wrap" aria-label="Profile image and technical specialties">
-      <span className="float-label float-top">◉ MCP PROTOCOL · ACTIVE</span><span className="float-label float-left">&lt;LangGraph /&gt;</span><span className="float-label float-bottom">● SYSTEMS · AI / DATA</span>
-      <img className="portrait" src={profileImage} alt="Sumit Kumar Sharma, AI Engineer" />
-      <span className="photo-caption">MODEL INFERENCE · AI ENGINEER</span>
-    </div>
-  </div></section>;
+  return <section className="hero" id="home"><div className="container hero-grid"><div className="hero-copy">
+    <div className="eyebrow"><span className="dot" /> AI ENGINEER · BENGALURU, INDIA</div>
+    <p className="hello">Hi, I’m Sumit Sharma.</p><h1>Engineering AI.<br /><span className="gradient">Building impact.</span></h1>
+    <p className="intro">I turn complex data into intelligent products. From agentic workflows to production APIs, I build AI systems that work in the real world.</p>
+    <div className="button-row"><a className="button primary" href="#projects">Explore my work <span>↗</span></a><a className="button secondary" href="#contact">Let’s talk <span>↗</span></a></div>
+    <div className="network"><a href="https://github.com/timusksharma" target="_blank" rel="noreferrer">GitHub ↗</a><a href="mailto:timusksharma@gmail.com">Email ↗</a><span>Python / AI / Data</span></div>
+    </div><div className="hero-system"><div className="system-top"><span className="dot" /> HOW I BUILD <span>01 — 04</span></div><div className="system-title">From a question.<br /><span>To a working system.</span></div><div className="system-flow">{architecture.map(([number,title,,stat]) => <a href="#architecture" key={number}><span className="flow-number">{number}</span><div><strong>{title}</strong><small>{stat}</small></div><span className="flow-arrow">↗</span></a>)}</div><div className="system-bottom"><span>Python + LangGraph + FastAPI</span><span>⌘</span></div></div></div><div className="container hero-foot"><span>INTELLIGENCE, WITH ENGINEERING DISCIPLINE.</span><a href="#about">Scroll to discover ↓</a></div></section>;
 }
-
-function Metrics() { return <div className="container"><section className="metrics" id="about" aria-label="Core strengths">{metrics.map(([value, text]) => <div className="metric" key={value}><div className="metric-label">Engineering focus</div><strong>{value}</strong><span>{text}</span></div>)}</section></div>; }
-function SectionHeading({ kicker, title, note }) { return <div className="section-heading"><div><div className="kicker">• {kicker}</div><h2>{title}</h2></div>{note && <p className="section-note">{note}</p>}</div>; }
-function Architecture() { return <section className="section" id="architecture"><div className="container"><SectionHeading kicker="Topology & execution graph" title="AI systems architecture" note="A practical engineering path from enterprise data to reliable AI experiences." /><div className="architecture card"><div className="architecture-grid">{architecture.map(([number, title, text, stat]) => <article className="architecture-step" key={number}><div className="step-top"><span>STAGE {number}</span><span>◈</span></div><h3>{title}</h3><p>{text}</p><div className="step-stat"><span>Capability</span><strong>{stat}</strong></div></article>)}</div><div className="terminal"><span>$ build-ai-system --reliable --production-ready</span><span>● Engineering-first delivery</span></div></div></div></section>; }
-function Projects() { return <section className="section" id="projects"><div className="container"><SectionHeading kicker="Selected works" title="Production AI & agent architectures" note="Four projects grounded in the technical work described in the resume." /><div className="project-grid">{projects.map((project) => <article className="project card" key={project.title}><div className="project-tag"><span>{project.type}</span><span>◌ PROJECT</span></div><h3>{project.title}</h3><p>{project.text}</p><div className="project-metrics">{project.stats.map(([label, value]) => <div key={label}><small>{label}</small><strong>{value}</strong></div>)}</div><div className="tags">{project.tags.map((tag) => <span className="tag" key={tag}>{tag}</span>)}</div></article>)}</div></div></section>; }
-function Experience() { return <section className="section" id="experience"><div className="container"><SectionHeading kicker="Engineering provenance" title="Experience & production track record" note="2021 — Present" /><div className="experience-list">{experience.map((item) => <article className="experience card" key={item.company}><div><div className="period">{item.period}</div><h3>{item.title}</h3><div className="company">{item.company}</div></div><div><p>{item.text}</p><div className="tags">{item.tags.map((tag) => <span className="tag" key={tag}>{tag}</span>)}</div></div></article>)}</div></div></section>; }
-function Skills() { return <section className="section"><div className="container"><div className="skills card">{skillGroups.map(([title, tags]) => <div className="skill-group" key={title}><h3><span>◈</span>{title}</h3><div className="tags">{tags.map((tag) => <span className="tag" key={tag}>{tag}</span>)}</div></div>)}</div></div></section>; }
+function Metrics() { return <div className="container"><section className="metrics" id="about" aria-label="About and core strengths">{metrics.map(([value,text]) => <div className="metric" key={value}><strong>{value}</strong><span>{text}</span></div>)}</section></div>; }
+function SectionHeading({ kicker, title, note }) { return <div className="section-heading"><div><div className="kicker">{kicker}</div><h2>{title}</h2></div>{note && <p className="section-note">{note}</p>}</div>; }
+function Architecture() {
+ const [selected,setSelected] = useState(0);
+ return <section className="section" id="architecture"><div className="container"><SectionHeading kicker="02 / THE APPROACH" title="Built for the whole journey." note="Explore the layers behind a reliable AI system." /><div className="architecture card"><div className="architecture-tabs" role="tablist" aria-label="System architecture">{architecture.map(([number,title],i) => <button key={number} id={`stage-${i}`} role="tab" aria-selected={selected === i} aria-controls="stage-panel" tabIndex={selected === i ? 0 : -1} onClick={() => setSelected(i)} onKeyDown={event => { let next; if(event.key === 'ArrowRight') next=(i+1)%4; if(event.key === 'ArrowLeft') next=(i+3)%4; if(event.key === 'Home') next=0; if(event.key === 'End') next=3; if(next !== undefined) {event.preventDefault();setSelected(next);document.getElementById(`stage-${next}`).focus();} }}><span>{number}</span>{title}<span>↗</span></button>)}</div><div className="architecture-panel" id="stage-panel" role="tabpanel" aria-labelledby={`stage-${selected}`} tabIndex="0"><span className="stage-number">{architecture[selected][0]}</span><div><div className="kicker">{architecture[selected][3]}</div><h3>{architecture[selected][1]}</h3><p>{architecture[selected][2]}</p></div></div></div></div></section>;
+}
+function Projects() {
+ const [filter,setFilter] = useState('All work');
+ const categories=['All work','Agents','Retrieval','Data'];
+ const visible=projects.filter(p => filter === 'All work' || (filter === 'Agents' && ['Multi-agent','Frontend AI'].includes(p.type)) || (filter === 'Retrieval' && p.type === 'Hybrid RAG') || (filter === 'Data' && p.type === 'Agentic ETL'));
+ return <section className="section" id="projects"><div className="container"><SectionHeading kicker="01 / SELECTED WORK" title="Ideas into working systems." note="A selection of AI, automation, and data engineering projects." /><div className="filters" aria-label="Filter projects">{categories.map(category => <button key={category} aria-pressed={filter===category} onClick={() => setFilter(category)}>{category}{category === 'All work' && <span>04</span>}</button>)}</div><p className="sr-only" role="status">Showing {visible.length} projects</p><div className="project-grid">{visible.map(project => <article className="project card" key={project.title}><div className="project-tag"><span>{project.type}</span><span>0{projects.indexOf(project)+1} ↗</span></div><h3>{project.title}</h3><p>{project.text}</p><div className="tags">{project.tags.map(tag => <span className="tag" key={tag}>{tag}</span>)}</div><details className="project-details"><summary>Explore project <span>+</span></summary><div className="project-metrics">{project.stats.map(([label,value]) => <div key={label}><small>{label}</small><strong>{value}</strong></div>)}</div></details></article>)}</div></div></section>;
+}
+function Experience() { return <section className="section" id="experience"><div className="container"><SectionHeading kicker="03 / EXPERIENCE" title="Engineering in the real world." note="2021 — Present" /><div className="experience-list">{experience.map((item,i) => <details className="experience" key={item.company} open={i===0}><summary><span className="period">{item.period}</span><span><strong>{item.title}</strong><span className="company">{item.company}</span></span><span className="expand-icon">+</span></summary><div className="experience-content"><p>{item.text}</p><div className="tags">{item.tags.map(tag => <span className="tag" key={tag}>{tag}</span>)}</div></div></details>)}</div></div></section>; }
+function Skills() { return <section className="section"><div className="container"><SectionHeading kicker="04 / TOOLKIT" title="The tools behind the work." /><div className="skills">{skillGroups.map(([title,tags],i) => <div className="skill-group" key={title}><span className="skill-number">0{i+1}</span><h3>{title}</h3><div className="tags">{tags.map(tag => <span className="tag" key={tag}>{tag}</span>)}</div></div>)}</div></div></section>; }
 function Contact() {
   const [form, setForm] = useState({ name: '', email: '', message: '' });
   const submit = (event) => { event.preventDefault(); const subject = encodeURIComponent(`Portfolio enquiry from ${form.name || 'a visitor'}`); const body = encodeURIComponent(`Name: ${form.name}\nEmail: ${form.email}\n\n${form.message}`); window.location.href = `mailto:timusksharma@gmail.com?subject=${subject}&body=${body}`; };
-  return <section className="section" id="contact"><div className="container"><div className="contact card"><div><div className="kicker">• Direct connection</div><h2>Let&apos;s build your next AI system</h2><p>For LLM applications, RAG pipelines, data platforms, and production backend systems, get in touch.</p><div className="contact-details"><a href="mailto:timusksharma@gmail.com">✉ timusksharma@gmail.com</a><span>⌖ Bengaluru, Karnataka, India</span><span>◷ Available for remote collaboration</span></div></div><form className="form" onSubmit={submit}><label className="field-label" htmlFor="name">Name / organization</label><input className="field" id="name" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} placeholder="Your name or company" required /><label className="field-label" htmlFor="email">Email address</label><input className="field" id="email" type="email" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} placeholder="you@company.com" required /><label className="field-label" htmlFor="message">System scope & objective</label><textarea className="field" id="message" value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} placeholder="Tell me about the problem you want to solve." required /><button className="button primary" type="submit">✉ Start an email</button></form></div></div></section>;
+  return <section className="section" id="contact"><div className="container"><div className="contact card"><div><div className="kicker">05 / SAY HELLO</div><h2>Let&apos;s build your next AI system</h2><p>For LLM applications, RAG pipelines, data platforms, and production backend systems, get in touch.</p><div className="contact-details"><a href="mailto:timusksharma@gmail.com">✉ timusksharma@gmail.com</a><span>⌖ Bengaluru, Karnataka, India</span><span>◷ Available for remote collaboration</span></div></div><form className="form" onSubmit={submit}><label className="field-label" htmlFor="name">Name / organization</label><input className="field" id="name" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} placeholder="Your name or company" required /><label className="field-label" htmlFor="email">Email address</label><input className="field" id="email" type="email" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} placeholder="you@company.com" required /><label className="field-label" htmlFor="message">System scope & objective</label><textarea className="field" id="message" value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} placeholder="Tell me about the problem you want to solve." required /><button className="button primary" type="submit">✉ Start an email</button></form></div></div></section>;
 }
 function Footer() { return <footer className="container footer"><span>◈ AI ENGINEER / SYSTEMS & DATA</span><span>© {new Date().getFullYear()} Sumit Kumar Sharma</span></footer>; }
 
 function App() {
-  const [theme, setTheme] = useState(() => localStorage.getItem('theme') || 'light');
-  useEffect(() => { document.documentElement.dataset.theme = theme; localStorage.setItem('theme', theme); }, [theme]);
-  return <div className="page"><Header theme={theme} onThemeToggle={() => setTheme(theme === 'dark' ? 'light' : 'dark')} /><Hero /><Metrics /><Architecture /><Projects /><Experience /><Skills /><Contact /><Footer /></div>;
+  const [theme, setTheme] = useState(() => (() => { try { return localStorage.getItem('theme') || 'dark'; } catch { return 'dark'; } })());
+  useEffect(() => { document.documentElement.dataset.theme = theme; try { localStorage.setItem('theme', theme); } catch {} }, [theme]);
+  return <div className="page"><a className="skip-link" href="#projects">Skip to projects</a><Header theme={theme} onThemeToggle={() => setTheme(theme === 'dark' ? 'light' : 'dark')} /><main><Hero /><Metrics /><Projects /><Architecture /><Experience /><Skills /><Contact /></main><Footer /></div>;
 }
 
 createRoot(document.getElementById('root')).render(<App />);

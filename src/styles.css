@@ -117,6 +117,14 @@ body{background:var(--outer-bg);padding:18px}.page{max-width:1800px;margin:auto;
 @media(max-width:600px){.journey-grid{grid-template-columns:1fr;gap:14px}.journey-step{padding:24px}.journey-top{margin-bottom:24px}.journey-connector{display:none}.journey-step h3{font-size:26px}.journey-step p{margin-bottom:20px}.journey-caption{flex-wrap:wrap;font-size:12px}.journey-caption>span:nth-child(2){flex:1}.journey-caption .text-link{margin-left:20px}}
 @media(prefers-reduced-motion:reduce){.journey-step{transition:none}.journey-step:hover{transform:none}}
 
+.floating-resume{display:none}
+@media(max-width:760px){
+  .page{padding-bottom:calc(88px + env(safe-area-inset-bottom,0px))}
+  .floating-resume{position:fixed;right:calc(20px + env(safe-area-inset-right,0px));bottom:calc(20px + env(safe-area-inset-bottom,0px));z-index:25;display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:14px 20px;border:1px solid var(--line);border-radius:999px;background:var(--ink);color:var(--surface);box-shadow:0 6px 24px #0003;font-size:14px;font-weight:600}
+  .floating-resume:hover{background:var(--brand);color:var(--bg)}
+  .floating-resume svg{flex-shrink:0}
+}
+
 .mobile-menu-actions{display:none}
 @media(max-width:760px){
   .nav-links{max-height:calc(100dvh - 108px);overflow-y:auto;overscroll-behavior:contain}

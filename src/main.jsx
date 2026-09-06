@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client';
 import './styles.css';
 
 const resumeUrl = 'https://drive.google.com/file/d/1zLPmcgxbjUPqvm0RJK7UKjTqS4oIlgmu/view';
+const resumeDownloadUrl = 'https://drive.google.com/uc?export=download&id=1zLPmcgxbjUPqvm0RJK7UKjTqS4oIlgmu';
 const profileImage = 'https://lh3.googleusercontent.com/aida-public/AB6AXuBvYFjVFFdk-VgXMST3n9wnHFwbW1FwRZWe0K-QfeHzSOT_cvW4D-vhSOcbz0V8Tk3m2dVX2QAGo3nsAplQkEvkGYxhMI2_xzDuQ8dVwtXsjPHfaO2tmTfINyABmAf2E8MZy0uHzKY7dW69EzukG_JKzzLxL9AlgaT4ZqYlZ-6Cv-aQ_sZQggno0y9MTbKMIHHDhOtUn4hlpSYNt0hiPw9g-ps158UQyGPIAVGYxUCuu867yoJf5X7Sio1E-P5LUVeAUIg';
 
 const metrics = [
@@ -108,6 +109,13 @@ function Contact() {
 }
 function Footer() { return <footer className="container footer"><span>◈ AI ENGINEER / SYSTEMS & DATA</span><span>© {new Date().getFullYear()} Sumit Kumar Sharma</span></footer>; }
 
+function FloatingResume() {
+  return <a className="floating-resume" href={resumeDownloadUrl} target="_blank" rel="noopener noreferrer" aria-label="Download resume from Google Drive (opens in a new tab)">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" focusable="false"><path d="M12 3v12m-5-5 5 5 5-5M4 16v4a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-4" /></svg>
+    <span>Resume</span>
+  </a>;
+}
+
 function App() {
   const [theme, setTheme] = useState(() => (() => { try { return localStorage.getItem('portfolio-theme-v2') || 'light'; } catch { return 'light'; } })());
   useEffect(() => { document.documentElement.dataset.theme = theme; try { localStorage.setItem('portfolio-theme-v2', theme); } catch {} }, [theme]);
@@ -121,7 +129,7 @@ function App() {
     elements.forEach((element, i) => { element.classList.add('reveal'); element.style.setProperty('--reveal-delay', `${i % 2 * 80}ms`); observer.observe(element); });
     return () => { observer.disconnect(); elements.forEach(element => element.classList.remove('reveal')); };
   }, []);
-  return <div className="page"><a className="skip-link" href="#projects">Skip to projects</a><Header theme={theme} onThemeToggle={() => setTheme(theme === 'dark' ? 'light' : 'dark')} /><main><Hero /><Metrics /><Services /><Projects /><Architecture /><Experience /><Skills /><Contact /></main><Footer /></div>;
+  return <div className="page"><a className="skip-link" href="#projects">Skip to projects</a><Header theme={theme} onThemeToggle={() => setTheme(theme === 'dark' ? 'light' : 'dark')} /><main><Hero /><Metrics /><Services /><Projects /><Architecture /><Experience /><Skills /><Contact /></main><Footer /><FloatingResume /></div>;
 }
 
 createRoot(document.getElementById('root')).render(<App />);

@@ -61,7 +61,7 @@ function Hero() {
       <div className="brands-tile experience-tile">
         <div className="experience-tile-heading"><span>THE TEAMS BEHIND THE JOURNEY</span><h2>Built with experience.</h2></div>
         <div className="company-links">
-          {[['ALTEN', 'Aerospace · Airbus', '2022 — Present'], ['Salesken.ai', 'Conversation intelligence', '2021 — 2022'], ['Oracle Cerner', 'Healthcare technology', '2021']].map(([name, sector], index) => <a className="company-link" href="#experience" key={name} aria-label={`Explore my experience at ${name}`}><span className="company-monogram" aria-hidden="true">{['A', 'S', 'O'][index]}</span><span className="company-copy"><strong>{name}</strong><small>{sector}</small></span><span className="company-arrow" aria-hidden="true">↗</span></a>)}
+          {[['ALTEN', 'Aerospace · Airbus', '2022 — Present'], ['Salesken.ai', 'Conversation intelligence', '2021 — 2022'], ['Oracle Cerner', 'Healthcare technology', '2021']].map(([name, sector], index) => <a className="company-link" href="#experience" key={name} aria-label={`Explore my experience at ${name}`}><span className={`company-logo company-logo-${['alten', 'salesken', 'oracle-cerner'][index]}`} aria-hidden="true"><img src={`/logos/${['alten', 'salesken', 'oracle-cerner'][index]}.svg`} alt="" width="80" height="48" /></span><span className="company-copy"><strong>{name}</strong><small>{sector}</small></span><span className="company-arrow" aria-hidden="true">↗</span></a>)}
         </div>
       </div>
       <div className="social-tiles"><a href="https://github.com/timusksharma" target="_blank" rel="noreferrer" aria-label="Visit GitHub">GH<span>↗</span></a><a href="mailto:timusksharma@gmail.com" aria-label="Email Sumit">@<span>↗</span></a><a href={resumeUrl} download aria-label="Download resume">CV<span>↓</span></a><a href="#projects" aria-label="Explore projects">⌘<span>↗</span></a></div>
@@ -71,8 +71,23 @@ function Metrics() { return <section className="container about-section" id="abo
 function Services() { return <section className="section services-section"><div className="container services-layout"><div><div className="kicker">WHAT I DO</div><h2>How can I<br />help you?</h2><a className="text-link" href="#contact">Let’s talk about it ↗</a></div><div className="service-grid">{[['✳','AI applications','Useful LLM-powered experiences, from document assistants to intelligent tools that fit your workflow.','Retrieval'],['↗','Backend development','Reliable APIs and integrations, with the performance and infrastructure to serve real products.','All work'],['⌘','Agentic automation','Connected agents that plan, use tools, and complete complex tasks with human oversight.','Agents'],['≋','Data engineering','Scalable data pipelines and transformations that give intelligent systems a dependable foundation.','Data']].map(([icon,title,text,category],i) => <a className="service-card" href="#projects" key={title}><span className="service-icon" aria-hidden="true">{icon}</span><p>{text}</p><h3>{title}</h3><span className="service-index">0{i+1} ↗</span></a>)}</div></div></section>; }
 function SectionHeading({ kicker, title, note }) { return <div className="section-heading"><div><div className="kicker">{kicker}</div><h2>{title}</h2></div>{note && <p className="section-note">{note}</p>}</div>; }
 function Architecture() {
- const [selected,setSelected] = useState(0);
- return <section className="section" id="architecture"><div className="container"><SectionHeading kicker="02 / THE APPROACH" title="Built for the whole journey." note="Explore the layers behind a reliable AI system." /><div className="architecture card"><div className="architecture-tabs" role="tablist" aria-label="System architecture">{architecture.map(([number,title],i) => <button key={number} id={`stage-${i}`} role="tab" aria-selected={selected === i} aria-controls="stage-panel" tabIndex={selected === i ? 0 : -1} onClick={() => setSelected(i)} onKeyDown={event => { let next; if(event.key === 'ArrowRight') next=(i+1)%4; if(event.key === 'ArrowLeft') next=(i+3)%4; if(event.key === 'Home') next=0; if(event.key === 'End') next=3; if(next !== undefined) {event.preventDefault();setSelected(next);document.getElementById(`stage-${next}`).focus();} }}><span>{number}</span>{title}<span>↗</span></button>)}</div><div className="architecture-panel" id="stage-panel" role="tabpanel" aria-labelledby={`stage-${selected}`} tabIndex="0"><span className="stage-number">{architecture[selected][0]}</span><div><div className="kicker">{architecture[selected][3]}</div><h3>{architecture[selected][1]}</h3><p>{architecture[selected][2]}</p></div></div></div></div></section>;
+ const tools = [['PySpark', 'SQL', 'Quality checks'], ['Embeddings', 'Vector search', 'RAG'], ['LangGraph', 'Tools & memory', 'Checkpoints'], ['FastAPI', 'Kubernetes', 'Observability']];
+ const symbols = [
+   <><ellipse cx="16" cy="8" rx="10" ry="4" /><path d="M6 8v8c0 5.3 20 5.3 20 0V8M6 16v8c0 5.3 20 5.3 20 0v-8" /></>,
+   <><rect x="5" y="4" width="16" height="22" rx="3" /><path d="M9 10h8M9 15h5" /><circle cx="23" cy="22" r="5" /><path d="m27 26 3 3" /></>,
+   <><rect x="11" y="11" width="10" height="10" rx="3" /><path d="M16 5v6M5 16h6M21 16h6M16 21v6" /><circle cx="16" cy="4" r="2" /><circle cx="4" cy="16" r="2" /><circle cx="28" cy="16" r="2" /><circle cx="16" cy="28" r="2" /></>,
+   <><path d="M16 3 27 7v8c0 7-11 14-11 14S5 22 5 15V7L16 3Z" /><path d="m11 15 4 4 7-8" /></>
+ ];
+ return <section className="section" id="architecture"><div className="container">
+   <SectionHeading kicker="02 / THE APPROACH" title="Built for the whole journey." note="From raw data to reliable AI. Every layer, thoughtfully engineered." />
+   <ol className="journey-grid">{architecture.map(([number, title, text, outcome], i) => <li className={`journey-step journey-step-${i + 1}`} key={number}>
+     <div className="journey-top"><span className="journey-icon" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">{symbols[i]}</svg></span><span className="journey-number">{number} / 04</span></div>
+     <div className="journey-outcome">{outcome}</div><h3>{title}</h3><p>{text}</p>
+     <ul className="journey-tools" aria-label={`${title} tools`}>{tools[i].map(tool => <li key={tool}>{tool}</li>)}</ul>
+     {i < 3 && <span className="journey-connector" aria-hidden="true">↗</span>}
+   </li>)}</ol>
+   <div className="journey-caption"><span className="dot" aria-hidden="true" /><span>One connected approach. Built to work in the real world.</span><a className="text-link" href="#projects">See the work ↗</a></div>
+ </div></section>;
 }
 function Projects() {
  const [filter,setFilter] = useState('All work');

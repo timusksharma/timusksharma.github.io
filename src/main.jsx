@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import './styles.css';
 
-const resumeUrl = '/resume/Sumit_Kumar_Sharma_Resume.pdf';
+const resumeUrl = 'https://drive.google.com/file/d/1zLPmcgxbjUPqvm0RJK7UKjTqS4oIlgmu/view';
 const profileImage = 'https://lh3.googleusercontent.com/aida-public/AB6AXuBvYFjVFFdk-VgXMST3n9wnHFwbW1FwRZWe0K-QfeHzSOT_cvW4D-vhSOcbz0V8Tk3m2dVX2QAGo3nsAplQkEvkGYxhMI2_xzDuQ8dVwtXsjPHfaO2tmTfINyABmAf2E8MZy0uHzKY7dW69EzukG_JKzzLxL9AlgaT4ZqYlZ-6Cv-aQ_sZQggno0y9MTbKMIHHDhOtUn4hlpSYNt0hiPw9g-ps158UQyGPIAVGYxUCuu867yoJf5X7Sio1E-P5LUVeAUIg';
 
 const metrics = [
@@ -45,7 +45,7 @@ function Header({ theme, onThemeToggle }) {
     <nav className={`nav-links ${open ? 'is-open' : ''}`} aria-label="Main navigation" id="main-menu">
       {['About', 'Projects', 'Architecture', 'Experience', 'Contact'].map(item => <a key={item} href={`#${item.toLowerCase()}`} aria-current={active === item.toLowerCase() ? 'location' : undefined} onClick={() => setOpen(false)}>{item}</a>)}
     </nav>
-    <div className="nav-actions"><button className="theme-button" onClick={onThemeToggle} aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} theme`}>{theme === 'dark' ? '☀' : '☾'}</button><a className="resume-button" href={resumeUrl} download>Resume ↗</a><a className="nav-contact" href="#contact">Let’s talk ↗</a><button className="menu-button" aria-expanded={open} aria-controls="main-menu" onClick={() => setOpen(!open)}>{open ? 'Close' : 'Menu'}</button></div>
+    <div className="nav-actions"><button className="theme-button" onClick={onThemeToggle} aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} theme`}>{theme === 'dark' ? '☀' : '☾'}</button><a className="resume-button" href={resumeUrl} target="_blank" rel="noopener noreferrer">Resume ↗</a><a className="nav-contact" href="#contact">Let’s talk ↗</a><button className="menu-button" aria-expanded={open} aria-controls="main-menu" onClick={() => setOpen(!open)}>{open ? 'Close' : 'Menu'}</button></div>
   </div></header>;
 }
 function Hero() {
@@ -64,7 +64,7 @@ function Hero() {
           {[['ALTEN', 'Aerospace · Airbus', '2022 — Present'], ['Salesken.ai', 'Conversation intelligence', '2021 — 2022'], ['Oracle Cerner', 'Healthcare technology', '2021']].map(([name, sector], index) => <a className="company-link" href="#experience" key={name} aria-label={`Explore my experience at ${name}`}><span className={`company-logo company-logo-${['alten', 'salesken', 'oracle-cerner'][index]}`} aria-hidden="true"><img src={`/logos/${['alten', 'salesken', 'oracle-cerner'][index]}.svg`} alt="" width="80" height="48" /></span><span className="company-copy"><strong>{name}</strong><small>{sector}</small></span><span className="company-arrow" aria-hidden="true">↗</span></a>)}
         </div>
       </div>
-      <div className="social-tiles"><a href="https://github.com/timusksharma" target="_blank" rel="noreferrer" aria-label="Visit GitHub">GH<span>↗</span></a><a href="mailto:timusksharma@gmail.com" aria-label="Email Sumit">@<span>↗</span></a><a href={resumeUrl} download aria-label="Download resume">CV<span>↓</span></a><a href="#projects" aria-label="Explore projects">⌘<span>↗</span></a></div>
+      <div className="social-tiles"><a href="https://github.com/timusksharma" target="_blank" rel="noreferrer" aria-label="Visit GitHub">GH<span>↗</span></a><a href="mailto:timusksharma@gmail.com" aria-label="Email Sumit">@<span>↗</span></a><a href={resumeUrl} target="_blank" rel="noopener noreferrer" aria-label="View resume on Google Drive (opens in a new tab)">CV<span>↗</span></a><a href="#projects" aria-label="Explore projects">⌘<span>↗</span></a></div>
     </div></div><div className="container hero-foot"><span>AI SYSTEMS. BUILT WITH PURPOSE.</span><a href="#about">A little about my approach ↓</a></div></section>;
 }
 function Metrics() { return <section className="container about-section" id="about"><div className="mission"><span className="kicker">THE WHY BEHIND THE WORK</span><h2>Make intelligence useful.<br />Build systems people can<br className="desktop-break" /> actually depend on.</h2><p>I connect data, reasoning, and reliable engineering to help teams move from AI experiments to everyday impact.</p><div className="mission-tools"><span>Python</span><span>LangGraph</span><span>FastAPI</span><span>PySpark</span></div></div><div className="metrics">{metrics.map(([value,text]) => <div className="metric" key={value}><strong>{value}</strong><span>{text}</span></div>)}</div></section>; }

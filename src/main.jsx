@@ -44,6 +44,10 @@ function Header({ theme, onThemeToggle }) {
     <a className="brand" href="#home" aria-label="Sumit Sharma home">s<span>.</span><small>SUMIT SHARMA</small></a>
     <nav className={`nav-links ${open ? 'is-open' : ''}`} aria-label="Main navigation" id="main-menu">
       {['About', 'Projects', 'Architecture', 'Experience', 'Contact'].map(item => <a key={item} href={`#${item.toLowerCase()}`} aria-current={active === item.toLowerCase() ? 'location' : undefined} onClick={() => setOpen(false)}>{item}</a>)}
+      <div className="mobile-menu-actions">
+        <a className="mobile-resume" href={resumeUrl} target="_blank" rel="noopener noreferrer" onClick={() => setOpen(false)}>Resume ↗</a>
+        <a className="mobile-contact" href="#contact" onClick={() => setOpen(false)}>Let’s talk ↗</a>
+      </div>
     </nav>
     <div className="nav-actions"><button className="theme-button" onClick={onThemeToggle} aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} theme`}>{theme === 'dark' ? '☀' : '☾'}</button><a className="resume-button" href={resumeUrl} target="_blank" rel="noopener noreferrer">Resume ↗</a><a className="nav-contact" href="#contact">Let’s talk ↗</a><button className="menu-button" aria-expanded={open} aria-controls="main-menu" onClick={() => setOpen(!open)}>{open ? 'Close' : 'Menu'}</button></div>
   </div></header>;

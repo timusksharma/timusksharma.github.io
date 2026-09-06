@@ -84,4 +84,7 @@ body{background:#eaeaec;padding:18px}.page{max-width:1800px;margin:auto;backgrou
   .company-link:hover,.company-link:hover .company-arrow {transform:none}
 }
 
-.email-button{gap:12px;padding:10px 24px 10px 12px}.email-button-icon{display:grid;place-items:center;width:36px;height:36px;flex-shrink:0;border-radius:50%;background:#dcd6ff;color:#51458a;box-shadow:inset 0 0 0 1px #ffffff40;transition:transform .2s ease,background .2s ease}.email-button-icon svg{display:block;width:21px;height:21px}.email-button:hover .email-button-icon,.email-button:focus-visible .email-button-icon{background:#e9e5ff;transform:rotate(-8deg)}@media(prefers-reduced-motion:reduce){.email-button,.email-button-icon{transition:none}.email-button:hover,.email-button:hover .email-button-icon,.email-button:focus-visible .email-button-icon{transform:none}}
+.email-button{gap:9px;padding:16px 25px}
+.email-button-icon{display:inline-flex;align-items:center;justify-content:center;width:1.1em;height:1.1em;flex-shrink:0;color:inherit}
+.email-button-icon svg{display:block;width:100%;height:100%}
+@media(prefers-reduced-motion:reduce){.email-button,.email-button-icon{transition:none}.email-button:hover,.email-button:hover .email-button-icon,.email-button:focus-visible .email-button-icon{transform:none}}
